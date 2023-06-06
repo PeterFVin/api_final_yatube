@@ -1,7 +1,7 @@
-from http import HTTPStatus
-
 import pytest
 from django.db.utils import IntegrityError
+from http import HTTPStatus
+
 from posts.models import Follow
 
 

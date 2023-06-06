@@ -1,12 +1,13 @@
 from djoser.serializers import UserSerializer
-from posts.models import Comment, Follow, Group, Post, User
 from rest_framework import serializers
+
+from posts.models import Comment, Follow, Group, Post, User
 
 
 class CustomUserSerializer(UserSerializer):
     class Meta:
         model = User
-        fields = ('email', 'id', 'username', 'first_name', 'last_name')
+        fields = ('__all__')
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -25,7 +26,7 @@ class CommentSerializer(serializers.ModelSerializer):
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ("id", "title", "slug", "description")
+        fields = ('__all__')
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -38,13 +39,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ("id",
-                  "text",
-                  "pub_date",
-                  "author",
-                  "image",
-                  "group",
-                  "comments")
+        fields = ('__all__')
 
 
 class FollowSerializer(serializers.ModelSerializer):
@@ -70,7 +65,7 @@ class FollowSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Follow
-        fields = ('user', 'following')
+        fields = ('__all__')
 
         validators = [
             serializers.UniqueTogetherValidator(
